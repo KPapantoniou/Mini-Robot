@@ -10,4 +10,4 @@ Includes:
 - 💡 CAD schematics of the physical platform
 - 📄 Thesis and presentation materials
 
-📘 Read the [full thesis (PDF)](presentation_thesis)/thesis.pdf)
+📘 Read the [full thesis (PDF)](presentation_thesis)/thesis_KPapantoniou.pdf
