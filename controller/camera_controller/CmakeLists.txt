@@ -1,0 +1,70 @@
+cmake_minimum_required(VERSION 3.10)
+
+
+project(RobotVisionProject CXX)
+
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+
+find_package(OpenCV REQUIRED)
+
+
+if(NOT OpenCV_FOUND)
+    message(FATAL_ERROR "OpenCV not found. Please ensure it's installed and configured.")
+endif()
+
+set(CAMERA_SRCS
+    src/camera/camera_calibrator.cpp
+)
+set(NETWORK_SRCS
+    src/network/udp_client.cpp
+)
+
+set(ROBOT_CONTROL_SRCS
+    src/control/robot_controller.cpp
+    src/control/macro_controller.cpp
+    src/control/micro_controller.cpp
+)
+set(MAIN_SRCS
+    src/main.cpp
+)
+
+set(ALL_SRCS
+    ${MAIN_SRCS}
+    ${CAMERA_SRCS}
+    ${NETWORK_SRCS}
+    ${ROBOT_CONTROL_SRCS}
+)
+include_directories(
+    src/
+    src/camera/
+    src/network/
+    src/control/
+
+)
+add_executable(RobotVisionProject ${ALL_SRCS})
+
+
+target_link_libraries(RobotVisionProject
+    ${OpenCV_LIBS}
+)
+
+if(WIN32)
+    target_link_libraries(RobotVisionProject ws2_32)
+endif()
+
+target_include_directories(RobotVisionProject PUBLIC
+     ${CMAKE_CURRENT_SOURCE_DIR}/src          
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/camera
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/network
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/control
+    ${OpenCV_INCLUDE_DIRS}
+)
+target_compile_definitions(RobotVisionProject
+    PRIVATE
+    _USE_MATH_DEFINES 
+    _CONSOLE         
+)
+
