@@ -64,7 +64,7 @@ The simulation de-risks the design: motor dynamics, PID parameters, and force pr
 ## The Three Components
 
 ### 🧠 Physics Simulation
-*[Full details → simulation/README.md]*
+*[Full details](simulation/README.md)*
 
 The simulation models the complete electromechanical system: DC motor electrical dynamics, eccentric mass rotation, centrifugal force generation, and the resulting robot motion in 1-DOF and 2-DOF. A Simulated Annealing optimizer searches for optimal PID parameters automatically and compairs them with a PI controller with parameters that are provided by solving the linear second degree system of the close loop controller.
 
@@ -74,7 +74,7 @@ Key outputs: motor force profiles, robot trajectory under various control scheme
 
 ---
 ### ⚙️ Embedded Firmware (ESP32) + Autonomus Vision Controller
-*[Full details → controller/README.md]*
+*[Full details](controller/README.md)*
 
 The ESP32 firmware handles everything on the robot side: Wi-Fi connection, UDP command reception, dual motor PWM control, and a per-motor PID loop that maintains target RPM using encoder feedback. It also streams real-time RPM data back to the PC for monitoring.
 
